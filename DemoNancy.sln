@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNancy", "DemoNancy\DemoNancy.csproj", "{0496D844-5C6E-479D-BB2B-5EDBC81CABC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNancy.UnitTests", "DemoNancy.UnitTests\DemoNancy.UnitTests.csproj", "{909EDEC6-E3DE-41D9-BE62-C082C95E0103}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0496D844-5C6E-479D-BB2B-5EDBC81CABC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0496D844-5C6E-479D-BB2B-5EDBC81CABC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0496D844-5C6E-479D-BB2B-5EDBC81CABC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0496D844-5C6E-479D-BB2B-5EDBC81CABC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
