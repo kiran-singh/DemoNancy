@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DemoNancy.Data;
 using DemoNancy.Model;
 using Nancy;
 using Nancy.ModelBinding;
@@ -7,21 +8,17 @@ namespace DemoNancy
 {
     public class TodosModule : NancyModule
     {
-        private readonly Dictionary<long, Todo> _store;
+        private readonly IDataStore<Todo> _store;
 
-        public TodosModule(Dictionary<long, Todo> store) : base("todos")
+        public TodosModule(IDataStore<Todo> store) : base("todos")
         {
             _store = store;
 
-            Delete["/{id}"] = d =>
-            {
-                if (!_store.ContainsKey(d.id))
-                    return HttpStatusCode.NotFound;
-                _store.Remove(d.id);
-                return HttpStatusCode.OK;
-            };
+            Delete["/{id}"] = d => _store.Remove(d.id) ? HttpStatusCode.OK : HttpStatusCode.NotFound;
 
-            Get["/"] = _ => Response.AsJson(_store.Values);
+            Get["/"] = _ => Negotiate
+                .WithModel(_store.GetAll())
+                .WithView("Todos");
 
             Post["/"] = _ =>
             {
@@ -29,21 +26,18 @@ namespace DemoNancy
                 if (todo.Id == 0)
                     todo.Id = _store.Count + 1;
 
-                if (_store.ContainsKey(todo.Id))
-                    return HttpStatusCode.NotAcceptable;
+                if (_store.Add(todo))
+                    return Negotiate.WithModel(todo)
+                        .WithStatusCode(HttpStatusCode.Created)
+                        .WithView("Created");
 
-                _store.Add(todo.Id, todo);
-                return Response.AsJson(todo).WithStatusCode(HttpStatusCode.Created);
+                return HttpStatusCode.NotAcceptable;
             };
 
             Put["/{id}"] = p =>
             {
-                if (!_store.ContainsKey(p.id))
-                    return HttpStatusCode.NotFound;
-
                 var updatedTodo = this.Bind<Todo>();
-                store[p.id] = updatedTodo;
-                return Response.AsJson(updatedTodo);
+                return _store.Update(updatedTodo) ? Response.AsJson(updatedTodo) : HttpStatusCode.NotFound;
             };
         }
     }

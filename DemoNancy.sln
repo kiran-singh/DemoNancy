@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNancy", "DemoNancy\Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNancy.UnitTests", "DemoNancy.UnitTests\DemoNancy.UnitTests.csproj", "{909EDEC6-E3DE-41D9-BE62-C082C95E0103}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoNancy.IntegrationTests", "DemoNancy.IntegrationTests\DemoNancy.IntegrationTests.csproj", "{1C80D566-5345-482C-B24F-F6B8153BDDEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{909EDEC6-E3DE-41D9-BE62-C082C95E0103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C80D566-5345-482C-B24F-F6B8153BDDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C80D566-5345-482C-B24F-F6B8153BDDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C80D566-5345-482C-B24F-F6B8153BDDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C80D566-5345-482C-B24F-F6B8153BDDEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

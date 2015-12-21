@@ -1,0 +1,45 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DemoNancy.Model.Todo[]>
+
+<html>
+<head>
+    <title>Todos</title>
+</head>
+<body>
+    <h1>All todos</h1>
+    
+    <a href="/authentication/redirect/twitter">Login with Twitter</a>
+
+    @if (Model.Length > 0)
+    {
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Order</th>
+                <th>Completed</th>
+            </tr>
+            @foreach (var todo in @Model)
+            {
+            <tr id="@todo.Id">
+                <td>@todo.Title</td>
+                <td>@todo.Order</td>
+                <td>@todo.Completed</td>
+            </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <h3>Nothing to do...</h3>
+    }
+    <br />
+    <hr />
+    <h2>Add todo</h2>
+    <form action="/todos/" method="POST">
+        <input type="text" name="Title" placeholder="Title" />
+        <input type="number" name="Order" value="0" />
+        <input type="checkbox" name="Completed" />
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>

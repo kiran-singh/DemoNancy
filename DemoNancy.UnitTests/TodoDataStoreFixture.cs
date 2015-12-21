@@ -32,14 +32,20 @@ namespace DemoNancy.UnitTests
             Enumerable.Range(1, _random.Next(5, 20)).ToList().ForEach(x =>
             {
                 var id = _random.Next();
+                while (_ids.Contains(id))
+                {
+                    id = _random.Next(); 
+                }
+
                 _ids.Add(id);
-                _todoDataStore.Add(new Todo
+                var todo = new Todo
                 {
                     Id = id,
-                    Completed = _random.Next() % 2 == 0,
+                    Completed = _random.Next()%2 == 0,
                     Order = _random.Next(5, 10),
                     Title = _random.Next().ToString(),
-                }).Should().BeTrue();
+                };
+                _todoDataStore.Add(todo).Should().BeTrue();
             });
         }
 

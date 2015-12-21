@@ -1,0 +1,13 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<DemoNancy.Model.Todo>
+
+<html>
+<head>
+    <title>Todo</title>
+</head>
+    <body>
+        <h1>New todo</h1>
+        <div>Title: @Model.Title</div>
+        <div>Order: @Model.Order</div>
+        <div>Completed: @Model.Completed</div>
+    </body>
+</html>

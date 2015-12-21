@@ -31,6 +31,11 @@ namespace DemoNancy.Data
         {
             try
             {
+                if (_todosXmlDoc.Root.Elements(Todo.KeyTodo).Any(x => x.Element("id").Value.ToInt() == todo.Id))
+                {
+                    return false;
+                }
+
                 _todosXmlDoc.Root.Add(todo.AsXElement());
                 Save();
             }
@@ -61,7 +66,7 @@ namespace DemoNancy.Data
         public IEnumerable<Todo> GetAll()
         {
             return from xElement in _todosXmlDoc.Root.Elements(Todo.KeyTodo)
-                select new Todo().FromXElement(xElement);
+                   select new Todo().FromXElement(xElement);
         }
 
         public virtual bool Remove(int id)
