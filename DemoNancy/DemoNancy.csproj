@@ -82,6 +82,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Docs\overview.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Created.cshtml" />
     <Content Include="Views\Todos.cshtml" />
@@ -99,6 +102,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Data\FilePathProvider.cs" />
+    <Compile Include="Data\IFilePathProvider.cs" />
     <Compile Include="Data\TodoDataStore.cs" />
     <Compile Include="Data\IDataStore.cs" />
     <Compile Include="HelloModule.cs" />

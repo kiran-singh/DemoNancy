@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DemoNancy.Data;
 using DemoNancy.Model;
 using Nancy;
@@ -17,7 +18,7 @@ namespace DemoNancy
             Delete["/{id}"] = d => _store.Remove(d.id) ? HttpStatusCode.OK : HttpStatusCode.NotFound;
 
             Get["/"] = _ => Negotiate
-                .WithModel(_store.GetAll())
+                .WithModel(_store.GetAll().ToArray())
                 .WithView("Todos");
 
             Post["/"] = _ =>

@@ -13,9 +13,9 @@ namespace DemoNancy.Data
         //private static readonly string TodoFilePath = HttpContext.Current.Server.MapPath("~/App_Data/Todo.xml");
         private readonly XDocument _todosXmlDoc;
 
-        public TodoDataStore(string filePath)
+        public TodoDataStore(IFilePathProvider filePathProvider)
         {
-            _filePath = filePath;
+            _filePath = filePathProvider.GetPath();
             if (!File.Exists(_filePath))
             {
                 _todosXmlDoc = new XDocument(new XElement("todos"));

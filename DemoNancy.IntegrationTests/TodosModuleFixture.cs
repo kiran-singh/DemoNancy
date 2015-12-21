@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using DemoNancy.Data;
 using DemoNancy.Model;
+using Moq;
 using Nancy;
 using Nancy.Testing;
 
@@ -32,7 +33,9 @@ namespace DemoNancy.IntegrationTests
         public void SetUp()
         {
             _random = new Random();
-            _store = new TodoDataStore(Path.Combine(Path.GetTempPath(), "todos.xml"));
+            var filePathProvider = new Mock<IFilePathProvider>();
+            filePathProvider.Setup(x => x.GetPath()).Returns(Path.Combine(Path.GetTempPath(), "todos.xml"));
+            _store = new TodoDataStore(filePathProvider.Object);
 
             _aTodo = new Todo { Completed = false, Order = 0, Title = "Task 1" };
             _editedTodo = new Todo { Completed = false, Id = 42, Order = 0, Title = "Edited name" };

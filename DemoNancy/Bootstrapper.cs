@@ -1,7 +1,7 @@
-﻿using System.Web;
-using DemoNancy.Data;
+﻿using DemoNancy.Data;
 using DemoNancy.Model;
 using Nancy;
+using Nancy.Conventions;
 using Nancy.TinyIoc;
 using Nancy.ViewEngines.Razor;
 
@@ -15,8 +15,14 @@ namespace DemoNancy
         {
             base.ConfigureApplicationContainer(container);
 
-            container.Register<IDataStore<Todo>>(
-                new TodoDataStore(HttpContext.Current.Server.MapPath("~/App_Data/todos.xml")));
+            container.Register<IDataStore<Todo>>(new TodoDataStore(new FilePathProvider()));
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            base.ConfigureConventions(nancyConventions);
+
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/docs", "Docs"));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DemoNancy.UnitTests
             while (!rootPathFound)
             {
                 var directoriesContainingViewFolder = currentDirectory.GetDirectories(
-                          "Views", SearchOption.AllDirectories);
+                    "Views", SearchOption.AllDirectories);
                 if (directoriesContainingViewFolder.Any())
                 {
                     _cachedRootPath = directoriesContainingViewFolder.First().FullName;
