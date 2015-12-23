@@ -6,6 +6,7 @@ using DemoNancy.Model;
 using Moq;
 using Nancy;
 using Nancy.Testing;
+using ProtoBuf;
 
 namespace DemoNancy.IntegrationTests
 {
@@ -19,6 +20,7 @@ namespace DemoNancy.IntegrationTests
         private const string PathTodos = "/todos/";
         public const string KeyApplicationXml = "application/xml";
         public const string KeyApplicationJson = "application/json";
+        private const string KeyApplicationXProtobuf = "application/x-protobuf";
 
         private Browser _browser;
 
@@ -197,6 +199,28 @@ namespace DemoNancy.IntegrationTests
 
             // Assert
             actualBody.Should().Be(_aTodo);
+        }
+
+        [Test]
+        public void Post_AsProtobuf_ReturnsPostedTodoAsProtobuf()
+        {
+            // Arrange
+            // Act
+            var actual = _browser.Post(PathTodos, with =>
+            {
+                var stream = new MemoryStream();
+                Serializer.Serialize(stream, _aTodo);
+                with.Body(stream, KeyApplicationXProtobuf);
+                with.Accept(KeyApplicationXml);
+            })
+                .Then
+                .Get(PathTodos, with => with.Accept(KeyApplicationXProtobuf));
+
+            // Assert
+            _aTodo.Id = 1;
+            var actualBody = Serializer.Deserialize<Todo[]>(actual.Body.AsStream());
+            actualBody.Length.Should().Be(1);
+            actualBody[0].Should().Be(_aTodo);
         }
 
         [Test]

@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using ProtoBuf;
 
 namespace DemoNancy.Model
 {
+    [ProtoContract]
     public class Todo : IData
     {
         public const string KeyId = "id";
         public const string KeyTodo = "todo";
 
+        [ProtoMember(1)]
         public int Id { get; set; }
+
+        [ProtoMember(2)]
         public string Title { get; set; }
+
+        [ProtoMember(3)]
         public int Order { get; set; }
+
+        [ProtoMember(4)]
         public bool Completed { get; set; }
 
         protected bool Equals(Todo other)
