@@ -12,7 +12,7 @@ namespace DemoNancy.UnitTests
     using NUnit.Framework;
 
     [TestFixture]
-    public class DocumentationTests
+    public class DocumentationFixture
     {
         [Test, Ignore("Todo: fix")]
         public void Get_Overview_ReturnsStaticFile()
